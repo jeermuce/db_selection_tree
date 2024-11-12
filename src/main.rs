@@ -1,8 +1,8 @@
-use clap::{Arg, Command};
+use clap::Command;
 use dialoguer::{theme::ColorfulTheme, Confirm};
 
 fn main() {
-    let matches = Command::new("db_selection_tree")
+    Command::new("db_selection_tree")
         .version("0.1.0")
         .author("Your Name <your.email@example.com>")
         .about("Helps to select SQL or NoSQL approach")
