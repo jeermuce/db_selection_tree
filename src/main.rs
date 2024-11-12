@@ -13,44 +13,60 @@ fn main() {
         .interact()
         .unwrap();
 
+    if big_data {
+        println!("NoSQL (recommended for big data)");
+        return;
+    }
+
     let data_integrity = Confirm::with_theme(&ColorfulTheme::default())
         .with_prompt("Is data integrity important?")
         .interact()
         .unwrap();
+
+    if data_integrity {
+        println!("SQL (recommended for ACID compliance and data integrity)");
+        return;
+    }
 
     let low_latency = Confirm::with_theme(&ColorfulTheme::default())
         .with_prompt("Is low latency required?")
         .interact()
         .unwrap();
 
+    if low_latency {
+        println!("NoSQL (recommended for low latency)");
+        return;
+    }
+
     let flexible_schema = Confirm::with_theme(&ColorfulTheme::default())
         .with_prompt("Is a flexible schema needed?")
         .interact()
         .unwrap();
 
+    if flexible_schema {
+        println!("NoSQL (recommended for flexible schema requirements)");
+        return;
+    }
+
+    // Data Access Questions
     let repeatable_access_pattern = Confirm::with_theme(&ColorfulTheme::default())
         .with_prompt("Is there a repeatable access pattern?")
         .interact()
         .unwrap();
 
+    if !repeatable_access_pattern {
+        println!("SQL (best suited for varied access patterns)");
+        return;
+    }
+
     let partition_and_sort_key = Confirm::with_theme(&ColorfulTheme::default())
-        .with_prompt("Is there a partition and sort key that cover needed queries?")
+        .with_prompt("Is there a partition and sort key that covers needed queries?")
         .interact()
         .unwrap();
 
-    if big_data {
-        println!("NoSQL");
-    } else if data_integrity {
-        println!("SQL");
-    } else if low_latency {
-        println!("NoSQL");
-    } else if flexible_schema {
-        println!("NoSQL");
-    } else if repeatable_access_pattern {
-        println!("SQL");
-    } else if partition_and_sort_key {
-        println!("SQL");
+    if partition_and_sort_key {
+        println!("NoSQL (works well with partitioned and sorted data access)");
     } else {
-        println!("No clear recommendation, use whichever you are more comfortable with");
+        println!("SQL (better for non-partitioned data access)");
     }
 }
