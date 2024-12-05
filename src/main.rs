@@ -4,7 +4,7 @@ use dialoguer::{theme::ColorfulTheme, Confirm};
 fn main() {
     Command::new("db_selection_tree")
         .version("0.1.0")
-        .author("Your Name <your.email@example.com>")
+        .author("jeermuce <ernesto_mc.dev@proton.me")
         .about("Helps to select SQL or NoSQL approach")
         .get_matches();
 
